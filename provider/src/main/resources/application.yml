@@ -1,0 +1,16 @@
+server:
+    port: 8101
+spring:
+    cloud:
+        nacos:
+            discovery:
+                ip: 127.0.0.1
+                port: 6379
+                username: nacos
+                password: nacos
+                namespace: cloud-test
+                log-name: ./logs/
+        loadbalancer:
+            enabled: true
+    application:
+        name: cloud-provider
