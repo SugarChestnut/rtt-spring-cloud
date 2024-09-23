@@ -14,3 +14,20 @@ spring:
             enabled: true
     application:
         name: cloud-consumer
+feign:
+    okhttp:
+        enabled: true
+    httpclient:
+        enabled: false
+        hc5:
+            enabled: false
+    circuitbreaker:
+        enabled: false
+management:
+    endpoints:
+        jmx:
+            exposure:
+                include: '*'
+        web:
+            exposure:
+                include: '*'
