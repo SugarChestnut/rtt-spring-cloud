@@ -1,6 +1,6 @@
 package cn.rentaotao.consumer.controller;
 
-import cn.rentaotao.consumer.service.ProviderOperationService;
+import cn.rentaotao.consumer.feign.ProviderOperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +19,12 @@ public class ConsumerController {
     }
 
     @RequestMapping("/index")
-    public List<String> index() {
+    public List<String> getProvider() {
         return providerOperationService.getProvider();
+    }
+
+    @RequestMapping("/default")
+    public List<String> getDefault() {
+        return providerOperationService.getDefault();
     }
 }

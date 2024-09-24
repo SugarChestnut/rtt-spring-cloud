@@ -3,12 +3,13 @@ server:
 spring:
     cloud:
         nacos:
+            server-addr: 127.0.0.1:8848
+            username: nacos
+            password: nacos
             discovery:
                 ip: 127.0.0.1
-                port: 6379
-                username: nacos
-                password: nacos
-                namespace: cloud-test
+                port: ${server.port}
+                namespace: test
                 log-name: ./logs/
         loadbalancer:
             enabled: true
