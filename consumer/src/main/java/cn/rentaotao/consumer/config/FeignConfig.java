@@ -1,9 +1,6 @@
 package cn.rentaotao.consumer.config;
 
-import feign.FeignException;
-import feign.RequestTemplate;
-import feign.Response;
-import feign.Util;
+import feign.*;
 import feign.codec.DecodeException;
 import feign.codec.Decoder;
 import feign.codec.EncodeException;
@@ -14,12 +11,13 @@ import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.util.List;
 
 /**
  * @author rtt
  * @date 2024/9/24 16:00
  */
-@Configuration(proxyBeanMethods = false)
+//@Configuration(proxyBeanMethods = false)
 public class FeignConfig {
 
     @Bean("myDecoder")
@@ -49,6 +47,26 @@ public class FeignConfig {
             @Override
             public void encode(Object object, Type bodyType, RequestTemplate template) throws EncodeException {
 
+            }
+        };
+    }
+
+    @Bean("myContract")
+    public Contract contract() {
+        return new Contract() {
+            @Override
+            public List<MethodMetadata> parseAndValidateMetadata(Class<?> targetType) {
+                return null;
+            }
+        };
+    }
+
+    @Bean("myRequestInterceptor")
+    public RequestInterceptor requestInterceptor() {
+        return new RequestInterceptor() {
+            @Override
+            public void apply(RequestTemplate template) {
+                System.out.println("Request interceptor");
             }
         };
     }
